@@ -1,0 +1,17 @@
+// src/components/header/header-view.module.scss
+
+.header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 6rem;
+  box-shadow: 0 0 0.25rem #ccc;
+}
+
+.logo {
+  height: 9rem;
+}
