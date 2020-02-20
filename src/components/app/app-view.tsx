@@ -2,11 +2,12 @@
 
 import React from "react";
 import styles from "./app-view.module.scss";
+import { Header } from "../";
 
 const App: React.FC = () => {
   return (
     <div className={styles.app}>
-      <div>TODO</div>
+      <Header />
     </div>
   );
 };

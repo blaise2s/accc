@@ -26,24 +26,72 @@
   align-items: center;
 }
 
+.fill {
+  content: "";
+  position: absolute;
+  width: 0;
+  opacity: 0;
+  height: 0.1rem;
+  bottom: 0;
+  background-color: rgb(264, 198, 82);
+  transition: all 0.5s ease-in-out;
+}
+
 .navItem {
   margin-right: 1rem;
   cursor: pointer;
   color: rgb(13, 32, 62);
   position: relative;
+  padding-bottom: 0.2rem;
 
-  &:after {
-    content: "";
-    position: absolute;
-    width: 0;
-    opacity: 0;
-    height: 0.1rem;
-    background-color: rgb(264, 198, 82);
-    transition: all 0.75s ease-in-out;
+  &.fillFrom {
+    &.left:after {
+      @extend .fill;
+      left: 0;
+    }
+
+    &.right:after {
+      @extend .fill;
+      right: 0;
+    }
+
+    &.center {
+      &:before {
+        @extend .fill;
+        left: 50%;
+      }
+      &:after {
+        @extend .fill;
+        right: 50%;
+      }
+    }
+
+    &.ends {
+      &:before {
+        @extend .fill;
+        left: 0;
+      }
+      &:after {
+        @extend .fill;
+        right: 0;
+      }
+    }
+
+    &.left:hover,
+    &.right:hover {
+      &:after {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+
+    &.center:hover,
+    &.ends:hover {
+      &:before,
+      &:after {
+        width: 50%;
+        opacity: 1;
+      }
+    }
   }
-}
-
-.navItem:hover:after {
-  width: 100%;
-  opacity: 1;
 }
