@@ -12,10 +12,12 @@
   box-shadow: 0 0 0.25rem #ccc;
 }
 
+.linkLogo {
+  margin-left: 1rem;
+}
+
 .logo {
-  padding-left: 1rem;
   height: 5rem;
-  cursor: pointer;
 }
 
 .navigation {
@@ -34,64 +36,74 @@
   height: 0.1rem;
   bottom: 0;
   background-color: rgb(264, 198, 82);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.25s ease-in;
 }
 
 .navItem {
   margin-right: 1rem;
-  cursor: pointer;
-  color: rgb(13, 32, 62);
   position: relative;
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.25rem;
+  font-size: 1.1rem;
 
-  &.fillFrom {
-    &.left:after {
+  &.left:after {
+    @extend .fill;
+    left: 0;
+  }
+
+  &.right:after {
+    @extend .fill;
+    right: 0;
+  }
+
+  &.center {
+    &:before {
+      @extend .fill;
+      left: 50%;
+    }
+    &:after {
+      @extend .fill;
+      right: 50%;
+    }
+  }
+
+  &.ends {
+    &:before {
       @extend .fill;
       left: 0;
     }
-
-    &.right:after {
+    &:after {
       @extend .fill;
       right: 0;
     }
+  }
 
-    &.center {
-      &:before {
-        @extend .fill;
-        left: 50%;
-      }
-      &:after {
-        @extend .fill;
-        right: 50%;
-      }
-    }
-
-    &.ends {
-      &:before {
-        @extend .fill;
-        left: 0;
-      }
-      &:after {
-        @extend .fill;
-        right: 0;
-      }
-    }
-
-    &.left:hover,
-    &.right:hover {
-      &:after {
-        width: 100%;
-        opacity: 1;
-      }
-    }
-
-    &.center:hover,
-    &.ends:hover {
-      &:before,
-      &:after {
-        width: 50%;
-        opacity: 1;
-      }
+  &.left.active,
+  &.right.active,
+  &.left:hover,
+  &.left:focus,
+  &.right:hover,
+  &.right:focus {
+    &:after {
+      width: 100%;
+      opacity: 1;
     }
   }
+
+  &.center.active,
+  &.ends.active,
+  &.center:hover,
+  &.center:focus,
+  &.ends:hover,
+  &.ends:focus {
+    &:before,
+    &:after {
+      width: 50%;
+      opacity: 1;
+    }
+  }
+}
+
+.link {
+  color: rgb(13, 32, 62);
+  text-decoration: none;
 }

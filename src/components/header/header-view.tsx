@@ -1,30 +1,35 @@
 // src/components/header/header-view.tsx
 
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import styles from "./header-view.module.scss";
 import logo from "../../images/ACCC-Logo.png";
 
-const Header: React.FC = () => {
-  const homeClickHandler = () => console.log("TODO: Use click handler...");
+export interface NavItem {
+  title: string;
+  path: string;
+}
 
-  const navClickHandler = (link: string) => console.log(`TODO: Handle click to page ${link}`);
+const Header: React.FC<{ navItems: NavItem[] }> = ({ navItems }) => {
+  const classes = [styles.navItem, styles.center, styles.link];
 
-  const navItems = ["Schedule", "Results", "Rules", "News", "Leadership"];
-  const classes = [styles.navItem, styles.fillFrom, styles.center];
+  const renderNav = () => {
+    return navItems.map((navItem: NavItem) => {
+      return (
+        <NavLink key={navItem.title} className={classes.join(" ")} to={navItem.path} activeClassName={styles.active}>
+          {navItem.title}
+        </NavLink>
+      );
+    });
+  };
 
   return (
     <div className={styles.header}>
-      <img onClick={homeClickHandler} className={styles.logo} src={logo} alt="ACCC Logo"></img>
+      <Link className={`${styles.link} ${styles.linkLogo}`} to="/">
+        <img className={styles.logo} src={logo} alt="ACCC Logo"></img>
+      </Link>
       <nav>
-        <ul className={styles.navigation}>
-          {navItems.map((navItem: string) => {
-            return (
-              <li onClick={() => navClickHandler(navItem)} key={navItem} className={classes.join(" ")}>
-                {navItem}
-              </li>
-            );
-          })}
-        </ul>
+        <ul className={styles.navigation}>{renderNav()}</ul>
       </nav>
     </div>
   );

@@ -2,6 +2,8 @@
 
 import React from "react";
 import Header from "./header-view";
+import { BrowserRouter } from "react-router-dom";
+import { navItems } from "../../data";
 
 export default {
   component: Header,
@@ -9,5 +11,9 @@ export default {
 };
 
 export const standard = () => {
-  return <Header />;
+  return (
+    <BrowserRouter>
+      <Header navItems={navItems} />
+    </BrowserRouter>
+  );
 };
